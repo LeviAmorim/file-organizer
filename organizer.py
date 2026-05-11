@@ -1,15 +1,33 @@
-# File Organizer
+import os
+import shutil
 
-Python script that automatically organizes files into folders based on file type.
+# Folder to organize
+folder_path = "C:/Users/Levi/Downloads"
 
-## Features
-- Organizes images
-- Organizes documents
-- Organizes videos
-- Organizes music files
+# File categories
+file_types = {
+    "Images": [".png", ".jpg", ".jpeg", ".gif"],
+    "Documents": [".pdf", ".docx", ".txt"],
+    "Music": [".mp3", ".wav"],
+    "Videos": [".mp4", ".mkv"],
+    "Code": [".py", ".html", ".css", ".js"]
+}
 
-## Technologies
-- Python
+# Organize files
+for file_name in os.listdir(folder_path):
+    file_path = os.path.join(folder_path, file_name)
 
-## Goal
-Practice automation and file management with Python.
+    if os.path.isfile(file_path):
+        file_extension = os.path.splitext(file_name)[1].lower()
+
+        for folder_name, extensions in file_types.items():
+            if file_extension in extensions:
+
+                destination_folder = os.path.join(folder_path, folder_name)
+
+                if not os.path.exists(destination_folder):
+                    os.makedirs(destination_folder)
+
+                shutil.move(file_path, os.path.join(destination_folder, file_name))
+
+                print(f"Moved: {file_name} → {folder_name}")
