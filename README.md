@@ -8,6 +8,9 @@ Python script that automatically organizes files into folders based on file type
 - Organizes music files
 - Organizes videos
 - Organizes code files
+- Organizes compressed files
+- Organizes spreadsheets
+- Shows organized file count
 
 ## Technologies
 - Python
